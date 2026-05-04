@@ -6,9 +6,9 @@
   <title>Escala da Equipe</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
   <style>
-    /* ═══════════════════════════════════════════════
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        TOKENS
-    ═══════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     :root {
       --bg:        #f2f0eb;
       --surface:   #ffffff;
@@ -35,9 +35,9 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* ═══════════════════════════════════════════════
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        SHARED ELEMENTS
-    ═══════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     .app-title {
       font-family: 'Instrument Serif', serif;
       font-size: clamp(1.4rem, 3vw, 2rem);
@@ -202,9 +202,9 @@
     }
     .backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* ═══════════════════════════════════════════════
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        SHARED OVERLAYS (team + config)
-    ═══════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     .sheet-close {
       width: 32px; height: 32px; background: var(--surface2);
       border: none; border-radius: 10px; font-size: 1rem; cursor: pointer;
@@ -271,9 +271,9 @@
     .cfg-title { font-family: 'Instrument Serif', serif; font-size: 1.3rem; margin-bottom: 4px; }
     .cfg-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; }
 
-    /* ═══════════════════════════════════════════════
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        MOBILE LAYOUT  (< 768px)
-    ═══════════════════════════════════════════════ */
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     .mobile-shell { display: flex; flex-direction: column; min-height: 100dvh; }
 
     .mobile-header {
@@ -290,7 +290,7 @@
     .mobile-main { flex: 1; overflow-y: auto; padding: 0 16px; -webkit-overflow-scrolling: touch; }
     .mobile-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 0 2px 16px; }
 
-    /* mobile day cell — compact */
+    /* mobile day cell â€” compact */
     .day-m {
       aspect-ratio: 1; border-radius: 12px;
       display: flex; flex-direction: column; align-items: center;
@@ -311,6 +311,29 @@
     .day-num { font-size: 0.82rem; font-weight: 800; color: var(--text); line-height: 1; }
     .dots { display: flex; flex-wrap: wrap; gap: 2px; justify-content: center; padding: 0 3px; }
     .dot  { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+    /* EVENT indicators â€” mobile compact */
+    .evt-dots { display:flex; flex-wrap:wrap; gap:2px; justify-content:center; padding:0 2px; }
+    .evt-dot  { width:5px; height:5px; border-radius:2px; background:var(--accent2); flex-shrink:0; }
+
+    /* EVENT tags â€” desktop cells */
+    .evt-tags { display:flex; flex-direction:column; gap:3px; margin-bottom:4px; }
+    .evt-tag  {
+      display:inline-block; font-size:0.65rem; font-weight:800;
+      background:#fff8e6; color:#a07010; border:1px solid #f0d060;
+      border-radius:5px; padding:2px 6px; white-space:nowrap;
+      overflow:hidden; text-overflow:ellipsis; max-width:100%;
+      letter-spacing:0.02em;
+    }
+
+    /* EVENT rows â€” detail sheet/sidebar */
+    .evt-section { margin-bottom:4px; }
+    .evt-row { margin-bottom:6px; }
+    .evt-tag-lg {
+      display:inline-block; font-size:0.82rem; font-weight:700;
+      background:#fff8e6; color:#a07010; border:1px solid #f0d060;
+      border-radius:8px; padding:6px 12px;
+    }
 
     /* bottom sheet */
     .bottom-sheet {
@@ -344,9 +367,9 @@
     /* hide desktop on mobile */
     .desktop-shell { display: none; }
 
-    /* ═══════════════════════════════════════════════
-       DESKTOP LAYOUT  (≥ 768px)
-    ═══════════════════════════════════════════════ */
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       DESKTOP LAYOUT  (â‰¥ 768px)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     @media (min-width: 768px) {
       .mobile-shell  { display: none; }
       .desktop-shell {
@@ -391,7 +414,7 @@
         gap: 6px;
       }
 
-      /* desktop day cell — spacious */
+      /* desktop day cell â€” spacious */
       .day-d {
         min-height: 120px; background: var(--surface);
         border: 1.5px solid var(--border); border-radius: 14px;
@@ -463,22 +486,22 @@
 </head>
 <body>
 
-<!-- ════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      MOBILE LAYOUT
-════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="mobile-shell">
   <div class="mobile-header">
     <div class="mobile-header-top">
       <h1 class="app-title">Escala <em>Equipe</em></h1>
       <div style="display:flex;gap:8px">
-        <button class="icon-btn" onclick="openTeam()">👥</button>
-        <button class="icon-btn" onclick="openCfg()">🔗</button>
+        <button class="icon-btn" onclick="openTeam()">ðŸ‘¥</button>
+        <button class="icon-btn" onclick="openCfg()">ðŸ”—</button>
       </div>
     </div>
     <div class="mobile-month-nav">
-      <button class="month-nav-btn" onclick="changeMonth(-1)">‹</button>
+      <button class="month-nav-btn" onclick="changeMonth(-1)">â€¹</button>
       <span class="month-label" id="m-month-label"></span>
-      <button class="month-nav-btn" onclick="changeMonth(1)">›</button>
+      <button class="month-nav-btn" onclick="changeMonth(1)">â€º</button>
     </div>
     <div class="weekdays-row mobile-weekdays">
       <div class="wd">D</div><div class="wd">S</div><div class="wd">T</div>
@@ -488,14 +511,14 @@
   <div class="mobile-main">
     <div class="mobile-calendar" id="m-calendar"></div>
     <div class="today-card" style="margin-bottom:12px">
-      <div class="today-card-label">📍 Escala de hoje</div>
-      <div class="today-card-names" id="m-today-names">—</div>
+      <div class="today-card-label">ðŸ“ Escala de hoje</div>
+      <div class="today-card-names" id="m-today-names">â€”</div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-btn" onclick="goToday()"><span class="nav-icon">📅</span><span class="nav-label">Hoje</span></button>
-    <button class="nav-btn accent" onclick="exportToSheet()"><span class="nav-icon">☁️</span><span class="nav-label">Salvar</span></button>
-    <button class="nav-btn" onclick="loadFromSheet()"><span class="nav-icon">⬇️</span><span class="nav-label">Carregar</span></button>
+    <button class="nav-btn" onclick="goToday()"><span class="nav-icon">ðŸ“…</span><span class="nav-label">Hoje</span></button>
+    <button class="nav-btn accent" onclick="exportToSheet()"><span class="nav-icon">â˜ï¸</span><span class="nav-label">Salvar</span></button>
+    <button class="nav-btn" onclick="loadFromSheet()"><span class="nav-icon">â¬‡ï¸</span><span class="nav-label">Carregar</span></button>
   </div>
 </div>
 
@@ -508,52 +531,52 @@
       <div class="sheet-date-main" id="m-sheet-date-main"></div>
       <div class="sheet-date-sub"  id="m-sheet-date-sub"></div>
     </div>
-    <button class="sheet-close" onclick="closeSheet()">✕</button>
+    <button class="sheet-close" onclick="closeSheet()">âœ•</button>
   </div>
   <div class="sheet-body" id="m-sheet-body"></div>
 </div>
 
 
-<!-- ════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      DESKTOP LAYOUT
-════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="desktop-shell">
   <div class="desktop-header">
     <div class="desktop-header-left">
       <h1 class="app-title">Escala <em>Equipe</em></h1>
-      <span class="desktop-header-sub" id="d-sheet-status">▸ sem planilha conectada</span>
+      <span class="desktop-header-sub" id="d-sheet-status">â–¸ sem planilha conectada</span>
     </div>
     <div class="desktop-header-right">
       <div class="desktop-month-nav">
-        <button class="month-nav-btn" onclick="changeMonth(-1)">‹</button>
+        <button class="month-nav-btn" onclick="changeMonth(-1)">â€¹</button>
         <span class="month-label" id="d-month-label"></span>
-        <button class="month-nav-btn" onclick="changeMonth(1)">›</button>
+        <button class="month-nav-btn" onclick="changeMonth(1)">â€º</button>
       </div>
-      <button class="icon-btn" onclick="openTeam()" title="Equipe">👥</button>
-      <button class="icon-btn" onclick="openCfg()"  title="Planilha">🔗</button>
+      <button class="icon-btn" onclick="openTeam()" title="Equipe">ðŸ‘¥</button>
+      <button class="icon-btn" onclick="openCfg()"  title="Planilha">ðŸ”—</button>
     </div>
   </div>
 
   <!-- Today bar + legend -->
   <div class="desktop-today-bar">
-    <span class="dtb-label">📍 Hoje</span>
-    <span class="dtb-names" id="d-today-names">—</span>
+    <span class="dtb-label">ðŸ“ Hoje</span>
+    <span class="dtb-names" id="d-today-names">â€”</span>
     <div class="desktop-legend" id="d-legend"></div>
   </div>
 
   <!-- Toolbar -->
   <div class="desktop-toolbar">
-    <button class="tb-btn" onclick="goToday()">📅 Ir para hoje</button>
-    <button class="tb-btn primary" onclick="exportToSheet()">☁️ Salvar na Planilha</button>
-    <button class="tb-btn" onclick="loadFromSheet()">⬇️ Carregar Planilha</button>
+    <button class="tb-btn" onclick="goToday()">ðŸ“… Ir para hoje</button>
+    <button class="tb-btn primary" onclick="exportToSheet()">â˜ï¸ Salvar na Planilha</button>
+    <button class="tb-btn" onclick="loadFromSheet()">â¬‡ï¸ Carregar Planilha</button>
   </div>
 
   <!-- Calendar -->
   <div class="desktop-calendar-wrap">
     <div class="weekdays-row desktop-weekdays">
-      <div class="wd">Domingo</div><div class="wd">Segunda</div><div class="wd">Terça</div>
+      <div class="wd">Domingo</div><div class="wd">Segunda</div><div class="wd">TerÃ§a</div>
       <div class="wd">Quarta</div><div class="wd">Quinta</div><div class="wd">Sexta</div>
-      <div class="wd" style="color:var(--accent2);opacity:.8">Sábado</div>
+      <div class="wd" style="color:var(--accent2);opacity:.8">SÃ¡bado</div>
     </div>
     <div class="desktop-calendar" id="d-calendar"></div>
   </div>
@@ -567,19 +590,19 @@
       <div class="dds-date-main" id="d-sidebar-date-main"></div>
       <div class="dds-date-sub"  id="d-sidebar-date-sub"></div>
     </div>
-    <button class="sheet-close" onclick="closeSidebar()">✕</button>
+    <button class="sheet-close" onclick="closeSidebar()">âœ•</button>
   </div>
   <div class="dds-body" id="d-sidebar-body"></div>
 </div>
 
 
-<!-- ════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      SHARED OVERLAYS
-════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <!-- Team overlay -->
 <div class="team-overlay" id="team-overlay">
   <div class="team-header">
-    <button class="sheet-close" onclick="closeTeam()">✕</button>
+    <button class="sheet-close" onclick="closeTeam()">âœ•</button>
     <h2>Equipe</h2>
   </div>
   <div class="team-list" id="team-list"></div>
@@ -612,11 +635,11 @@
     </div>
     <div style="height:1px;background:var(--border);margin:4px 0 14px"></div>
     <div class="field-group" style="margin-bottom:6px">
-      <label>📧 E-mail do líder / gestor</label>
+      <label>ðŸ“§ E-mail do lÃ­der / gestor</label>
       <input type="email" id="cfg-lider-email" placeholder="lider@organizacao.gov.br"/>
     </div>
     <p style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;line-height:1.5">
-      Receberá alerta se a escala de amanhã estiver vazia.<br>Deixe em branco para desativar.
+      ReceberÃ¡ alerta se a escala de amanhÃ£ estiver vazia.<br>Deixe em branco para desativar.
     </p>
     <button class="btn-full" onclick="saveCfg()">Salvar</button>
     <div style="height:8px"></div>
@@ -625,14 +648,14 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- ════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      JAVASCRIPT
-════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <script>
 const COLORS = ['#2d6a4f','#d4a017','#c0392b','#1a6b9a','#7b3f9e','#c0622d','#2980b9','#16a085','#8e44ad','#d35400'];
 const MESES     = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-const MESES_EXT = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
-const DIAS_SEM  = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+const MESES_EXT = ['janeiro','fevereiro','marÃ§o','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const DIAS_SEM  = ['Domingo','Segunda-feira','TerÃ§a-feira','Quarta-feira','Quinta-feira','Sexta-feira','SÃ¡bado'];
 
 function initials(n){ return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
 function dayKey(y,m,d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
@@ -642,18 +665,28 @@ let S = {
   year: new Date().getFullYear(),
   month: new Date().getMonth(),
   team: [], schedule: {},
+  events: {},
   sheetId: '', scriptUrl: '', liderEmail: '',
   sel: null
 };
 
 function loadState(){
-  try{ const s=JSON.parse(localStorage.getItem('escala_v3')||'{}'); Object.assign(S,{team:[],schedule:{},sheetId:'',scriptUrl:'',liderEmail:''},s); }catch(e){}
+  try{ const s=JSON.parse(localStorage.getItem('escala_v3')||'{}'); Object.assign(S,{team:[],schedule:{},events:{},sheetId:'',scriptUrl:'',liderEmail:''},s); }catch(e){}
 }
 function saveState(){
-  localStorage.setItem('escala_v3', JSON.stringify({team:S.team,schedule:S.schedule,sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmail:S.liderEmail}));
+  localStorage.setItem('escala_v3', JSON.stringify({team:S.team,schedule:S.schedule,events:S.events,sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmail:S.liderEmail}));
 }
 
-// ── RENDER BOTH CALENDARS ─────────────────────────────────────────────────
+// Retorna eventos de um dia: fixos semanais (por dia da semana) + avulsos (por data)
+function getEvents(dateObj){
+  const key=dayKey(dateObj.getFullYear(),dateObj.getMonth(),dateObj.getDate());
+  const dow=dateObj.getDay();
+  const fixed=(S.events._weekly||{})[dow]||[];
+  const avulse=S.events[key]||[];
+  return [...fixed,...avulse];
+}
+
+// â”€â”€ RENDER BOTH CALENDARS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function render(){
   const {year,month}=S, today=new Date();
   const firstDay=new Date(year,month,1).getDay();
@@ -678,12 +711,16 @@ function renderMobileCalendar(year,month,firstDay,dim,today){
     const isPast=date<new Date(today.toDateString());
     const isWE=date.getDay()===0||date.getDay()===6;
     const persons=S.schedule[key]||[];
+    const evts=getEvents(date);
     const cell=document.createElement('div');
     let cls='day-m';
     if(isPast)cls+=' past'; if(isToday)cls+=' today'; if(isWE)cls+=' weekend';
-    if(persons.length)cls+=' has-entry'; if(S.sel===key)cls+=' selected';
+    if(persons.length||evts.length)cls+=' has-entry'; if(S.sel===key)cls+=' selected';
     cell.className=cls;
-    cell.innerHTML=`<span class="day-num">${d}</span>${persons.length?`<div class="dots">${persons.map(p=>`<span class="dot" style="background:${p.color}"></span>`).join('')}</div>`:''}`;
+    let mhtml=`<span class="day-num">${d}</span>`;
+    if(evts.length) mhtml+=`<div class="evt-dots">${evts.map(()=>`<span class="evt-dot"></span>`).join('')}</div>`;
+    else if(persons.length) mhtml+=`<div class="dots">${persons.map(p=>`<span class="dot" style="background:${p.color}"></span>`).join('')}</div>`;
+    cell.innerHTML=mhtml;
     cell.addEventListener('click',()=>openSheet(key,d));
     cal.appendChild(cell);
   }
@@ -700,6 +737,7 @@ function renderDesktopCalendar(year,month,firstDay,dim,today){
     const isPast=date<new Date(today.toDateString());
     const isWE=date.getDay()===0||date.getDay()===6;
     const persons=S.schedule[key]||[];
+    const evts=getEvents(date);
     const cell=document.createElement('div');
     let cls='day-d';
     if(isPast)cls+=' past'; if(isToday)cls+=' today'; if(isWE)cls+=' weekend';
@@ -708,9 +746,11 @@ function renderDesktopCalendar(year,month,firstDay,dim,today){
 
     let html=`<span class="day-d-num">${d}</span>`;
     if(isToday) html+=`<span class="today-badge">Hoje</span>`;
+    // Event tags
+    if(evts.length) html+=`<div class="evt-tags">${evts.map(ev=>`<span class="evt-tag">${ev}</span>`).join('')}</div>`;
     html+=`<div class="day-d-chips">`;
     persons.forEach((p,i)=>{
-      html+=`<div class="person-chip"><span class="chip-dot" style="background:${p.color}"></span><span class="chip-name">${p.name}</span>${!isPast?`<button class="chip-remove" onclick="removePerson(event,'${key}',${i})">✕</button>`:''}</div>`;
+      html+=`<div class="person-chip"><span class="chip-dot" style="background:${p.color}"></span><span class="chip-name">${p.name}</span>${!isPast?`<button class="chip-remove" onclick="removePerson(event,'${key}',${i})">âœ•</button>`:''}</div>`;
     });
     html+=`</div>`;
     if(!isPast) html+=`<button class="day-d-add" onclick="openSidebar(event,'${key}',${d})">+ Adicionar</button>`;
@@ -726,7 +766,7 @@ function renderTodayCards(){
   const p=S.schedule[key]||[];
   ['m-today-names','d-today-names'].forEach(id=>{
     const el=document.getElementById(id);
-    if(p.length){ el.className='today-card-names'; el.textContent=p.map(x=>x.name).join(' · '); }
+    if(p.length){ el.className='today-card-names'; el.textContent=p.map(x=>x.name).join(' Â· '); }
     else{ el.className='today-card-names empty'; el.textContent='Nenhum membro escalado hoje'; }
   });
 }
@@ -740,7 +780,7 @@ function renderLegend(){
   });
 }
 
-// ── MOBILE SHEET ──────────────────────────────────────────────────────────
+// â”€â”€ MOBILE SHEET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openSheet(key,day){
   S.sel=key; render();
   const date=new Date(S.year,S.month,day);
@@ -761,21 +801,29 @@ function closeSheet(){
 
 function renderSheetBody(bodyId,key,isPast){
   const persons=S.schedule[key]||[];
+  const date=new Date(key);
+  const evts=getEvents(date);
   let html='';
+  // Events section
+  if(evts.length){
+    html+=`<div class="evt-section"><div class="add-section-label" style="margin-bottom:8px">ðŸ“Œ Eventos</div>`;
+    evts.forEach(ev=>{ html+=`<div class="evt-row"><span class="evt-tag-lg">${ev}</span></div>`; });
+    html+=`</div><div style="height:12px"></div>`;
+  }
   if(!persons.length) html+=`<div class="empty-msg">Nenhum membro neste dia.</div>`;
   else persons.forEach((p,i)=>{
     html+=`<div class="person-row" style="animation-delay:${i*.05}s">
       <div class="person-avatar" style="background:${p.color}">${initials(p.name)}</div>
       <div class="person-info"><div class="person-name">${p.name}</div>${p.email?`<div class="person-email">${p.email}</div>`:''}</div>
-      ${!isPast?`<button class="person-remove-btn" onclick="removePerson(null,'${key}',${i})">✕</button>`:''}
+      ${!isPast?`<button class="person-remove-btn" onclick="removePerson(null,'${key}',${i})">âœ•</button>`:''}
     </div>`;
   });
   if(!isPast){
     const already=persons.map(p=>p.name);
     const avail=S.team.filter(m=>!already.includes(m.name));
-    if(!S.team.length) html+=`<div class="add-section"><div class="empty-msg" style="padding-top:8px">Adicione membros via 👥.</div></div>`;
+    if(!S.team.length) html+=`<div class="add-section"><div class="empty-msg" style="padding-top:8px">Adicione membros via ðŸ‘¥.</div></div>`;
     else if(avail.length){
-      html+=`<div class="add-section"><div class="add-section-label">Adicionar à escala</div>`;
+      html+=`<div class="add-section"><div class="add-section-label">Adicionar Ã  escala</div>`;
       avail.forEach(m=>{ html+=`<button class="member-option" onclick="addPerson('${key}','${m.name}')"><div class="mo-avatar" style="background:${m.color}">${initials(m.name)}</div><span class="mo-name">${m.name}</span><span class="mo-add">+</span></button>`; });
       html+=`</div>`;
     }
@@ -783,7 +831,7 @@ function renderSheetBody(bodyId,key,isPast){
   document.getElementById(bodyId).innerHTML=html;
 }
 
-// ── DESKTOP SIDEBAR ───────────────────────────────────────────────────────
+// â”€â”€ DESKTOP SIDEBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openSidebar(e,key,day){
   if(e) e.stopPropagation();
   const date=new Date(S.year,S.month,day);
@@ -801,7 +849,7 @@ function closeSidebar(){
   document.getElementById('d-sidebar').classList.remove('open');
 }
 
-// ── SHARED ADD/REMOVE ─────────────────────────────────────────────────────
+// â”€â”€ SHARED ADD/REMOVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function addPerson(key,name){
   const m=S.team.find(x=>x.name===name); if(!m)return;
   if(!S.schedule[key])S.schedule[key]=[];
@@ -811,7 +859,7 @@ function addPerson(key,name){
   if(isDesktop()){ renderSheetBody('d-sidebar-body',key,isPast); }
   else { renderSheetBody('m-sheet-body',key,isPast); }
   render();
-  toast(`${m.name} adicionado(a) ✓`);
+  toast(`${m.name} adicionado(a) âœ“`);
 }
 
 function removePerson(e,key,idx){
@@ -825,7 +873,7 @@ function removePerson(e,key,idx){
   render();
 }
 
-// ── TEAM ──────────────────────────────────────────────────────────────────
+// â”€â”€ TEAM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openTeam(){ renderTeamList(); document.getElementById('team-overlay').classList.add('open'); }
 function closeTeam(){ document.getElementById('team-overlay').classList.remove('open'); render(); }
 
@@ -841,17 +889,17 @@ function addMember(){
   if(!name)return;
   S.team.push({name,email,color:COLORS[S.team.length%COLORS.length]});
   document.getElementById('new-name').value=''; document.getElementById('new-email').value='';
-  saveState(); renderTeamList(); toast(`${name} adicionado(a) ✓`);
+  saveState(); renderTeamList(); toast(`${name} adicionado(a) âœ“`);
 }
 function removeMember(idx){
   const n=S.team[idx].name; S.team.splice(idx,1); saveState(); renderTeamList(); toast(`${n} removido(a)`);
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────
+// â”€â”€ NAVIGATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function changeMonth(d){ S.month+=d; if(S.month<0){S.month=11;S.year--;} if(S.month>11){S.month=0;S.year++;} render(); }
 function goToday(){ const n=new Date(); S.year=n.getFullYear(); S.month=n.getMonth(); render(); }
 
-// ── CONFIG ────────────────────────────────────────────────────────────────
+// â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openCfg(){
   document.getElementById('cfg-sheet-id').value=S.sheetId;
   document.getElementById('cfg-script-url').value=S.scriptUrl;
@@ -869,40 +917,59 @@ function saveCfg(){
     fetch(`${S.scriptUrl}?action=saveLider&email=${encodeURIComponent(S.liderEmail)}`,{mode:'no-cors'}).catch(()=>{});
   }
   document.getElementById('cfg-overlay').classList.remove('open');
-  document.getElementById('d-sheet-status').textContent = S.sheetId ? `▸ Planilha: ${S.sheetId.slice(0,22)}…` : '▸ sem planilha conectada';
-  toast('Configuração salva ✓');
+  document.getElementById('d-sheet-status').textContent = S.sheetId ? `â–¸ Planilha: ${S.sheetId.slice(0,22)}â€¦` : 'â–¸ sem planilha conectada';
+  toast('ConfiguraÃ§Ã£o salva âœ“');
 }
 
-// ── SYNC ──────────────────────────────────────────────────────────────────
+// â”€â”€ SYNC â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function exportToSheet(){
-  if(!S.scriptUrl){ toast('⚠ Configure a planilha (🔗)'); return; }
-  toast('Enviando…');
+  if(!S.scriptUrl){ toast('âš  Configure a planilha (ðŸ”—)'); return; }
+  toast('Enviandoâ€¦');
   try{
     const rows=[];
     Object.entries(S.schedule).forEach(([date,persons])=>persons.forEach(p=>rows.push({date,name:p.name,email:p.email||''})));
     await fetch(`${S.scriptUrl}?action=save&data=${encodeURIComponent(JSON.stringify(rows))}`,{mode:'no-cors'});
-    toast('Salvo na planilha ✓');
-  }catch(e){ toast('Erro ao conectar ✕'); }
+    toast('Salvo na planilha âœ“');
+  }catch(e){ toast('Erro ao conectar âœ•'); }
 }
 async function loadFromSheet(){
-  if(!S.scriptUrl){ toast('⚠ Configure a planilha (🔗)'); return; }
-  toast('Carregando…');
+  if(!S.scriptUrl){ toast('âš  Configure a planilha (ðŸ”—)'); return; }
+  toast('Carregandoâ€¦');
   try{
-    const res=await fetch(`${S.scriptUrl}?action=load`), rows=await res.json();
+    const [resSchedule, resEvents] = await Promise.all([
+      fetch(`${S.scriptUrl}?action=load`),
+      fetch(`${S.scriptUrl}?action=loadEvents`)
+    ]);
+    const rows = await resSchedule.json();
     S.schedule={};
     rows.forEach(r=>{ if(!S.schedule[r.date])S.schedule[r.date]=[]; const m=S.team.find(x=>x.name===r.name); S.schedule[r.date].push({name:r.name,email:r.email,color:m?.color||'#888'}); });
-    saveState(); render(); toast('Escala carregada ✓');
-  }catch(e){ toast('Erro ao carregar ✕'); }
+
+    const evData = await resEvents.json();
+    S.events = {};
+    // weekly fixed: [{dow:0, name:'Culto Domingo'}, ...]
+    S.events._weekly = {};
+    (evData.weekly||[]).forEach(ev=>{
+      if(!S.events._weekly[ev.dow]) S.events._weekly[ev.dow]=[];
+      S.events._weekly[ev.dow].push(ev.name);
+    });
+    // specific dates: [{date:'2025-06-01', name:'Culto Alpha'}, ...]
+    (evData.specific||[]).forEach(ev=>{
+      if(!S.events[ev.date]) S.events[ev.date]=[];
+      S.events[ev.date].push(ev.name);
+    });
+
+    saveState(); render(); toast('Carregado âœ“');
+  }catch(e){ toast('Erro ao carregar âœ•'); }
 }
 
-// ── TOAST ─────────────────────────────────────────────────────────────────
+// â”€â”€ TOAST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let toastT;
 function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2800); }
 
-// ── INIT ──────────────────────────────────────────────────────────────────
+// â”€â”€ INIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 loadState();
 render();
-if(S.sheetId) document.getElementById('d-sheet-status').textContent=`▸ Planilha: ${S.sheetId.slice(0,22)}…`;
+if(S.sheetId) document.getElementById('d-sheet-status').textContent=`â–¸ Planilha: ${S.sheetId.slice(0,22)}â€¦`;
 </script>
 </body>
 </html>
