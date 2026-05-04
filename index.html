@@ -6,9 +6,9 @@
   <title>Escala da Equipe</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
   <style>
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* ═══════════════════════════════════════════════
        TOKENS
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    ═══════════════════════════════════════════════ */
     :root {
       --bg:        #f2f0eb;
       --surface:   #ffffff;
@@ -35,9 +35,9 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* ═══════════════════════════════════════════════
        SHARED ELEMENTS
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    ═══════════════════════════════════════════════ */
     .app-title {
       font-family: 'Instrument Serif', serif;
       font-size: clamp(1.4rem, 3vw, 2rem);
@@ -202,9 +202,9 @@
     }
     .backdrop.open { opacity: 1; pointer-events: all; }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* ═══════════════════════════════════════════════
        SHARED OVERLAYS (team + config)
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    ═══════════════════════════════════════════════ */
     .sheet-close {
       width: 32px; height: 32px; background: var(--surface2);
       border: none; border-radius: 10px; font-size: 1rem; cursor: pointer;
@@ -271,9 +271,9 @@
     .cfg-title { font-family: 'Instrument Serif', serif; font-size: 1.3rem; margin-bottom: 4px; }
     .cfg-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* ═══════════════════════════════════════════════
        MOBILE LAYOUT  (< 768px)
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    ═══════════════════════════════════════════════ */
     .mobile-shell { display: flex; flex-direction: column; min-height: 100dvh; }
 
     .mobile-header {
@@ -290,7 +290,7 @@
     .mobile-main { flex: 1; overflow-y: auto; padding: 0 16px; -webkit-overflow-scrolling: touch; }
     .mobile-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 0 2px 16px; }
 
-    /* mobile day cell â€” compact */
+    /* mobile day cell — compact */
     .day-m {
       aspect-ratio: 1; border-radius: 12px;
       display: flex; flex-direction: column; align-items: center;
@@ -312,11 +312,11 @@
     .dots { display: flex; flex-wrap: wrap; gap: 2px; justify-content: center; padding: 0 3px; }
     .dot  { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 
-    /* EVENT indicators â€” mobile compact */
+    /* EVENT indicators — mobile compact */
     .evt-dots { display:flex; flex-wrap:wrap; gap:2px; justify-content:center; padding:0 2px; }
     .evt-dot  { width:5px; height:5px; border-radius:2px; background:var(--accent2); flex-shrink:0; }
 
-    /* EVENT tags â€” desktop cells */
+    /* EVENT tags — desktop cells */
     .evt-tags { display:flex; flex-direction:column; gap:3px; margin-bottom:4px; }
     .evt-tag  {
       display:inline-block; font-size:0.65rem; font-weight:800;
@@ -326,7 +326,7 @@
       letter-spacing:0.02em;
     }
 
-    /* EVENT rows â€” detail sheet/sidebar */
+    /* EVENT rows — detail sheet/sidebar */
     .evt-section { margin-bottom:4px; }
     .evt-row { margin-bottom:6px; }
     .evt-tag-lg {
@@ -367,9 +367,9 @@
     /* hide desktop on mobile */
     .desktop-shell { display: none; }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       DESKTOP LAYOUT  (â‰¥ 768px)
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    /* ═══════════════════════════════════════════════
+       DESKTOP LAYOUT  (≥ 768px)
+    ═══════════════════════════════════════════════ */
     @media (min-width: 768px) {
       .mobile-shell  { display: none; }
       .desktop-shell {
@@ -414,7 +414,7 @@
         gap: 6px;
       }
 
-      /* desktop day cell â€” spacious */
+      /* desktop day cell — spacious */
       .day-d {
         min-height: 120px; background: var(--surface);
         border: 1.5px solid var(--border); border-radius: 14px;
@@ -486,22 +486,22 @@
 </head>
 <body>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════
      MOBILE LAYOUT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════ -->
 <div class="mobile-shell">
   <div class="mobile-header">
     <div class="mobile-header-top">
       <h1 class="app-title">Escala <em>Equipe</em></h1>
       <div style="display:flex;gap:8px">
-        <button class="icon-btn" onclick="openTeam()">ðŸ‘¥</button>
-        <button class="icon-btn" onclick="openCfg()">ðŸ”—</button>
+        <button class="icon-btn" onclick="openTeam()">👥</button>
+        <button class="icon-btn" onclick="openCfg()">🔗</button>
       </div>
     </div>
     <div class="mobile-month-nav">
-      <button class="month-nav-btn" onclick="changeMonth(-1)">â€¹</button>
+      <button class="month-nav-btn" onclick="changeMonth(-1)">‹</button>
       <span class="month-label" id="m-month-label"></span>
-      <button class="month-nav-btn" onclick="changeMonth(1)">â€º</button>
+      <button class="month-nav-btn" onclick="changeMonth(1)">›</button>
     </div>
     <div class="weekdays-row mobile-weekdays">
       <div class="wd">D</div><div class="wd">S</div><div class="wd">T</div>
@@ -511,14 +511,14 @@
   <div class="mobile-main">
     <div class="mobile-calendar" id="m-calendar"></div>
     <div class="today-card" style="margin-bottom:12px">
-      <div class="today-card-label">ðŸ“ Escala de hoje</div>
-      <div class="today-card-names" id="m-today-names">â€”</div>
+      <div class="today-card-label">📍 Escala de hoje</div>
+      <div class="today-card-names" id="m-today-names">—</div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-btn" onclick="goToday()"><span class="nav-icon">ðŸ“…</span><span class="nav-label">Hoje</span></button>
-    <button class="nav-btn accent" onclick="exportToSheet()"><span class="nav-icon">â˜ï¸</span><span class="nav-label">Salvar</span></button>
-    <button class="nav-btn" onclick="loadFromSheet()"><span class="nav-icon">â¬‡ï¸</span><span class="nav-label">Carregar</span></button>
+    <button class="nav-btn" onclick="goToday()"><span class="nav-icon">📅</span><span class="nav-label">Hoje</span></button>
+    <button class="nav-btn accent" onclick="exportToSheet()"><span class="nav-icon">☁️</span><span class="nav-label">Salvar</span></button>
+    <button class="nav-btn" onclick="loadFromSheet()"><span class="nav-icon">⬇️</span><span class="nav-label">Carregar</span></button>
   </div>
 </div>
 
@@ -531,52 +531,52 @@
       <div class="sheet-date-main" id="m-sheet-date-main"></div>
       <div class="sheet-date-sub"  id="m-sheet-date-sub"></div>
     </div>
-    <button class="sheet-close" onclick="closeSheet()">âœ•</button>
+    <button class="sheet-close" onclick="closeSheet()">✕</button>
   </div>
   <div class="sheet-body" id="m-sheet-body"></div>
 </div>
 
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════
      DESKTOP LAYOUT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════ -->
 <div class="desktop-shell">
   <div class="desktop-header">
     <div class="desktop-header-left">
       <h1 class="app-title">Escala <em>Equipe</em></h1>
-      <span class="desktop-header-sub" id="d-sheet-status">â–¸ sem planilha conectada</span>
+      <span class="desktop-header-sub" id="d-sheet-status">▸ sem planilha conectada</span>
     </div>
     <div class="desktop-header-right">
       <div class="desktop-month-nav">
-        <button class="month-nav-btn" onclick="changeMonth(-1)">â€¹</button>
+        <button class="month-nav-btn" onclick="changeMonth(-1)">‹</button>
         <span class="month-label" id="d-month-label"></span>
-        <button class="month-nav-btn" onclick="changeMonth(1)">â€º</button>
+        <button class="month-nav-btn" onclick="changeMonth(1)">›</button>
       </div>
-      <button class="icon-btn" onclick="openTeam()" title="Equipe">ðŸ‘¥</button>
-      <button class="icon-btn" onclick="openCfg()"  title="Planilha">ðŸ”—</button>
+      <button class="icon-btn" onclick="openTeam()" title="Equipe">👥</button>
+      <button class="icon-btn" onclick="openCfg()"  title="Planilha">🔗</button>
     </div>
   </div>
 
   <!-- Today bar + legend -->
   <div class="desktop-today-bar">
-    <span class="dtb-label">ðŸ“ Hoje</span>
-    <span class="dtb-names" id="d-today-names">â€”</span>
+    <span class="dtb-label">📍 Hoje</span>
+    <span class="dtb-names" id="d-today-names">—</span>
     <div class="desktop-legend" id="d-legend"></div>
   </div>
 
   <!-- Toolbar -->
   <div class="desktop-toolbar">
-    <button class="tb-btn" onclick="goToday()">ðŸ“… Ir para hoje</button>
-    <button class="tb-btn primary" onclick="exportToSheet()">â˜ï¸ Salvar na Planilha</button>
-    <button class="tb-btn" onclick="loadFromSheet()">â¬‡ï¸ Carregar Planilha</button>
+    <button class="tb-btn" onclick="goToday()">📅 Ir para hoje</button>
+    <button class="tb-btn primary" onclick="exportToSheet()">☁️ Salvar na Planilha</button>
+    <button class="tb-btn" onclick="loadFromSheet()">⬇️ Carregar Planilha</button>
   </div>
 
   <!-- Calendar -->
   <div class="desktop-calendar-wrap">
     <div class="weekdays-row desktop-weekdays">
-      <div class="wd">Domingo</div><div class="wd">Segunda</div><div class="wd">TerÃ§a</div>
+      <div class="wd">Domingo</div><div class="wd">Segunda</div><div class="wd">Terça</div>
       <div class="wd">Quarta</div><div class="wd">Quinta</div><div class="wd">Sexta</div>
-      <div class="wd" style="color:var(--accent2);opacity:.8">SÃ¡bado</div>
+      <div class="wd" style="color:var(--accent2);opacity:.8">Sábado</div>
     </div>
     <div class="desktop-calendar" id="d-calendar"></div>
   </div>
@@ -590,19 +590,19 @@
       <div class="dds-date-main" id="d-sidebar-date-main"></div>
       <div class="dds-date-sub"  id="d-sidebar-date-sub"></div>
     </div>
-    <button class="sheet-close" onclick="closeSidebar()">âœ•</button>
+    <button class="sheet-close" onclick="closeSidebar()">✕</button>
   </div>
   <div class="dds-body" id="d-sidebar-body"></div>
 </div>
 
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════
      SHARED OVERLAYS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════ -->
 <!-- Team overlay -->
 <div class="team-overlay" id="team-overlay">
   <div class="team-header">
-    <button class="sheet-close" onclick="closeTeam()">âœ•</button>
+    <button class="sheet-close" onclick="closeTeam()">✕</button>
     <h2>Equipe</h2>
   </div>
   <div class="team-list" id="team-list"></div>
@@ -635,11 +635,11 @@
     </div>
     <div style="height:1px;background:var(--border);margin:4px 0 14px"></div>
     <div class="field-group" style="margin-bottom:6px">
-      <label>ðŸ“§ E-mail do lÃ­der / gestor</label>
+      <label>📧 E-mail do líder / gestor</label>
       <input type="email" id="cfg-lider-email" placeholder="lider@organizacao.gov.br"/>
     </div>
     <p style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;line-height:1.5">
-      ReceberÃ¡ alerta se a escala de amanhÃ£ estiver vazia.<br>Deixe em branco para desativar.
+      Receberá alerta se a escala de amanhã estiver vazia.<br>Deixe em branco para desativar.
     </p>
     <button class="btn-full" onclick="saveCfg()">Salvar</button>
     <div style="height:8px"></div>
@@ -648,14 +648,14 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════
      JAVASCRIPT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════ -->
 <script>
 const COLORS = ['#2d6a4f','#d4a017','#c0392b','#1a6b9a','#7b3f9e','#c0622d','#2980b9','#16a085','#8e44ad','#d35400'];
 const MESES     = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-const MESES_EXT = ['janeiro','fevereiro','marÃ§o','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
-const DIAS_SEM  = ['Domingo','Segunda-feira','TerÃ§a-feira','Quarta-feira','Quinta-feira','Sexta-feira','SÃ¡bado'];
+const MESES_EXT = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const DIAS_SEM  = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
 
 function initials(n){ return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
 function dayKey(y,m,d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
@@ -686,7 +686,7 @@ function getEvents(dateObj){
   return [...fixed,...avulse];
 }
 
-// â”€â”€ RENDER BOTH CALENDARS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── RENDER BOTH CALENDARS ─────────────────────────────────────────────────
 function render(){
   const {year,month}=S, today=new Date();
   const firstDay=new Date(year,month,1).getDay();
@@ -750,7 +750,7 @@ function renderDesktopCalendar(year,month,firstDay,dim,today){
     if(evts.length) html+=`<div class="evt-tags">${evts.map(ev=>`<span class="evt-tag">${ev}</span>`).join('')}</div>`;
     html+=`<div class="day-d-chips">`;
     persons.forEach((p,i)=>{
-      html+=`<div class="person-chip"><span class="chip-dot" style="background:${p.color}"></span><span class="chip-name">${p.name}</span>${!isPast?`<button class="chip-remove" onclick="removePerson(event,'${key}',${i})">âœ•</button>`:''}</div>`;
+      html+=`<div class="person-chip"><span class="chip-dot" style="background:${p.color}"></span><span class="chip-name">${p.name}</span>${!isPast?`<button class="chip-remove" onclick="removePerson(event,'${key}',${i})">✕</button>`:''}</div>`;
     });
     html+=`</div>`;
     if(!isPast) html+=`<button class="day-d-add" onclick="openSidebar(event,'${key}',${d})">+ Adicionar</button>`;
@@ -766,7 +766,7 @@ function renderTodayCards(){
   const p=S.schedule[key]||[];
   ['m-today-names','d-today-names'].forEach(id=>{
     const el=document.getElementById(id);
-    if(p.length){ el.className='today-card-names'; el.textContent=p.map(x=>x.name).join(' Â· '); }
+    if(p.length){ el.className='today-card-names'; el.textContent=p.map(x=>x.name).join(' · '); }
     else{ el.className='today-card-names empty'; el.textContent='Nenhum membro escalado hoje'; }
   });
 }
@@ -780,7 +780,7 @@ function renderLegend(){
   });
 }
 
-// â”€â”€ MOBILE SHEET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── MOBILE SHEET ──────────────────────────────────────────────────────────
 function openSheet(key,day){
   S.sel=key; render();
   const date=new Date(S.year,S.month,day);
@@ -806,7 +806,7 @@ function renderSheetBody(bodyId,key,isPast){
   let html='';
   // Events section
   if(evts.length){
-    html+=`<div class="evt-section"><div class="add-section-label" style="margin-bottom:8px">ðŸ“Œ Eventos</div>`;
+    html+=`<div class="evt-section"><div class="add-section-label" style="margin-bottom:8px">📌 Eventos</div>`;
     evts.forEach(ev=>{ html+=`<div class="evt-row"><span class="evt-tag-lg">${ev}</span></div>`; });
     html+=`</div><div style="height:12px"></div>`;
   }
@@ -815,15 +815,15 @@ function renderSheetBody(bodyId,key,isPast){
     html+=`<div class="person-row" style="animation-delay:${i*.05}s">
       <div class="person-avatar" style="background:${p.color}">${initials(p.name)}</div>
       <div class="person-info"><div class="person-name">${p.name}</div>${p.email?`<div class="person-email">${p.email}</div>`:''}</div>
-      ${!isPast?`<button class="person-remove-btn" onclick="removePerson(null,'${key}',${i})">âœ•</button>`:''}
+      ${!isPast?`<button class="person-remove-btn" onclick="removePerson(null,'${key}',${i})">✕</button>`:''}
     </div>`;
   });
   if(!isPast){
     const already=persons.map(p=>p.name);
     const avail=S.team.filter(m=>!already.includes(m.name));
-    if(!S.team.length) html+=`<div class="add-section"><div class="empty-msg" style="padding-top:8px">Adicione membros via ðŸ‘¥.</div></div>`;
+    if(!S.team.length) html+=`<div class="add-section"><div class="empty-msg" style="padding-top:8px">Adicione membros via 👥.</div></div>`;
     else if(avail.length){
-      html+=`<div class="add-section"><div class="add-section-label">Adicionar Ã  escala</div>`;
+      html+=`<div class="add-section"><div class="add-section-label">Adicionar à escala</div>`;
       avail.forEach(m=>{ html+=`<button class="member-option" onclick="addPerson('${key}','${m.name}')"><div class="mo-avatar" style="background:${m.color}">${initials(m.name)}</div><span class="mo-name">${m.name}</span><span class="mo-add">+</span></button>`; });
       html+=`</div>`;
     }
@@ -831,7 +831,7 @@ function renderSheetBody(bodyId,key,isPast){
   document.getElementById(bodyId).innerHTML=html;
 }
 
-// â”€â”€ DESKTOP SIDEBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── DESKTOP SIDEBAR ───────────────────────────────────────────────────────
 function openSidebar(e,key,day){
   if(e) e.stopPropagation();
   const date=new Date(S.year,S.month,day);
@@ -849,7 +849,7 @@ function closeSidebar(){
   document.getElementById('d-sidebar').classList.remove('open');
 }
 
-// â”€â”€ SHARED ADD/REMOVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── SHARED ADD/REMOVE ─────────────────────────────────────────────────────
 function addPerson(key,name){
   const m=S.team.find(x=>x.name===name); if(!m)return;
   if(!S.schedule[key])S.schedule[key]=[];
@@ -859,7 +859,7 @@ function addPerson(key,name){
   if(isDesktop()){ renderSheetBody('d-sidebar-body',key,isPast); }
   else { renderSheetBody('m-sheet-body',key,isPast); }
   render();
-  toast(`${m.name} adicionado(a) âœ“`);
+  toast(`${m.name} adicionado(a) ✓`);
 }
 
 function removePerson(e,key,idx){
@@ -873,7 +873,7 @@ function removePerson(e,key,idx){
   render();
 }
 
-// â”€â”€ TEAM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── TEAM ──────────────────────────────────────────────────────────────────
 function openTeam(){ renderTeamList(); document.getElementById('team-overlay').classList.add('open'); }
 function closeTeam(){ document.getElementById('team-overlay').classList.remove('open'); render(); }
 
@@ -889,17 +889,17 @@ function addMember(){
   if(!name)return;
   S.team.push({name,email,color:COLORS[S.team.length%COLORS.length]});
   document.getElementById('new-name').value=''; document.getElementById('new-email').value='';
-  saveState(); renderTeamList(); toast(`${name} adicionado(a) âœ“`);
+  saveState(); renderTeamList(); toast(`${name} adicionado(a) ✓`);
 }
 function removeMember(idx){
   const n=S.team[idx].name; S.team.splice(idx,1); saveState(); renderTeamList(); toast(`${n} removido(a)`);
 }
 
-// â”€â”€ NAVIGATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── NAVIGATION ────────────────────────────────────────────────────────────
 function changeMonth(d){ S.month+=d; if(S.month<0){S.month=11;S.year--;} if(S.month>11){S.month=0;S.year++;} render(); }
 function goToday(){ const n=new Date(); S.year=n.getFullYear(); S.month=n.getMonth(); render(); }
 
-// â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CONFIG ────────────────────────────────────────────────────────────────
 function openCfg(){
   document.getElementById('cfg-sheet-id').value=S.sheetId;
   document.getElementById('cfg-script-url').value=S.scriptUrl;
@@ -917,24 +917,24 @@ function saveCfg(){
     fetch(`${S.scriptUrl}?action=saveLider&email=${encodeURIComponent(S.liderEmail)}`,{mode:'no-cors'}).catch(()=>{});
   }
   document.getElementById('cfg-overlay').classList.remove('open');
-  document.getElementById('d-sheet-status').textContent = S.sheetId ? `â–¸ Planilha: ${S.sheetId.slice(0,22)}â€¦` : 'â–¸ sem planilha conectada';
-  toast('ConfiguraÃ§Ã£o salva âœ“');
+  document.getElementById('d-sheet-status').textContent = S.sheetId ? `▸ Planilha: ${S.sheetId.slice(0,22)}…` : '▸ sem planilha conectada';
+  toast('Configuração salva ✓');
 }
 
-// â”€â”€ SYNC â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── SYNC ──────────────────────────────────────────────────────────────────
 async function exportToSheet(){
-  if(!S.scriptUrl){ toast('âš  Configure a planilha (ðŸ”—)'); return; }
-  toast('Enviandoâ€¦');
+  if(!S.scriptUrl){ toast('⚠ Configure a planilha (🔗)'); return; }
+  toast('Enviando…');
   try{
     const rows=[];
     Object.entries(S.schedule).forEach(([date,persons])=>persons.forEach(p=>rows.push({date,name:p.name,email:p.email||''})));
     await fetch(`${S.scriptUrl}?action=save&data=${encodeURIComponent(JSON.stringify(rows))}`,{mode:'no-cors'});
-    toast('Salvo na planilha âœ“');
-  }catch(e){ toast('Erro ao conectar âœ•'); }
+    toast('Salvo na planilha ✓');
+  }catch(e){ toast('Erro ao conectar ✕'); }
 }
 async function loadFromSheet(){
-  if(!S.scriptUrl){ toast('âš  Configure a planilha (ðŸ”—)'); return; }
-  toast('Carregandoâ€¦');
+  if(!S.scriptUrl){ toast('⚠ Configure a planilha (🔗)'); return; }
+  toast('Carregando…');
   try{
     const [resSchedule, resEvents] = await Promise.all([
       fetch(`${S.scriptUrl}?action=load`),
@@ -958,18 +958,18 @@ async function loadFromSheet(){
       S.events[ev.date].push(ev.name);
     });
 
-    saveState(); render(); toast('Carregado âœ“');
-  }catch(e){ toast('Erro ao carregar âœ•'); }
+    saveState(); render(); toast('Carregado ✓');
+  }catch(e){ toast('Erro ao carregar ✕'); }
 }
 
-// â”€â”€ TOAST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── TOAST ─────────────────────────────────────────────────────────────────
 let toastT;
 function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2800); }
 
-// â”€â”€ INIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
 render();
-if(S.sheetId) document.getElementById('d-sheet-status').textContent=`â–¸ Planilha: ${S.sheetId.slice(0,22)}â€¦`;
+if(S.sheetId) document.getElementById('d-sheet-status').textContent=`▸ Planilha: ${S.sheetId.slice(0,22)}…`;
 </script>
 </body>
 </html>
