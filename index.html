@@ -376,6 +376,12 @@ function saveState(){
   localStorage.setItem('escala_v4',JSON.stringify({team:S.team,schedule:S.schedule,events:S.events,sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmails:S.liderEmails}));
 }
 
+// Parse 'YYYY-MM-DD' safely in local timezone (avoids UTC midnight shift)
+function dateFromKey(key){
+  const [y,m,d]=key.split('-').map(Number);
+  return new Date(y,m-1,d);
+}
+
 function getEventNames(dateObj){
   const key=dayKey(dateObj.getFullYear(),dateObj.getMonth(),dateObj.getDate());
   const dow=dateObj.getDay();
@@ -504,7 +510,7 @@ function renderLegend(){
 
 // ── DETAIL PANEL (shared content) ─────────────────────────────────────────
 function renderDetailBody(bodyId, key, isPast){
-  const date=parseLocalDate(key);
+  const date=dateFromKey(key);
   const entries=getEntries(key), evtNames=getEventNames(date);
   const allEvts=[...new Set([...evtNames,...entries.map(e=>e.event)])];
   let h='';
@@ -627,6 +633,7 @@ function addEntryFromBtn(ev,key){
   S.schedule[key]=S.schedule[key].filter(e=>e.event!==eventName);
   S.schedule[key].push({event:eventName,name:member.name,color:member.color,email:member.email});
   saveState();
+  autoSave();
   const isPast=parseLocalDate(key)<new Date(new Date().toDateString());
   if(isDesktop())renderDetailBody('d-sidebar-body',key,isPast);
   else renderDetailBody('m-sheet-body',key,isPast);
@@ -640,6 +647,7 @@ function removeEntry(ev,key,eventName){
   S.schedule[key]=S.schedule[key].filter(e=>e.event!==eventName);
   if(!S.schedule[key].length)delete S.schedule[key];
   saveState();
+  autoSave();
   const isPast=parseLocalDate(key)<new Date(new Date().toDateString());
   if(isDesktop())renderDetailBody('d-sidebar-body',key,isPast);
   else renderDetailBody('m-sheet-body',key,isPast);
@@ -700,15 +708,38 @@ function saveCfg(){
 }
 
 // ── SYNC ───────────────────────────────────────────────────────────────────
-async function exportToSheet(){
-  if(!S.scriptUrl){toast('⚠ Configure a planilha (🔗)');return;}
-  toast('Enviando…');
+let _saveTimer=null;
+function autoSave(){
+  // Debounce: aguarda 800ms após última mudança antes de enviar
+  clearTimeout(_saveTimer);
+  _saveTimer=setTimeout(()=>_pushToSheet(), 800);
+}
+
+async function _pushToSheet(){
+  if(!S.scriptUrl) return; // sem planilha configurada, silencioso
   try{
     const rows=[];
     Object.entries(S.schedule).forEach(([date,entries])=>entries.forEach(e=>rows.push({date,event:e.event,name:e.name,email:e.email||''})));
     await fetch(`${S.scriptUrl}?action=save&data=${encodeURIComponent(JSON.stringify(rows))}`,{mode:'no-cors'});
-    toast('Salvo na planilha ✓');
-  }catch(e){toast('Erro ao conectar ✕');}
+    showSyncStatus('✓ Salvo');
+  }catch(e){ showSyncStatus('⚠ Falha ao salvar'); }
+}
+
+function showSyncStatus(msg){
+  // Mostra status discreto no header
+  const el=document.getElementById('d-status');
+  if(el){
+    const prev=S.sheetId?`▸ Planilha: ${S.sheetId.slice(0,22)}…`:'▸ sem planilha conectada';
+    el.textContent=msg;
+    setTimeout(()=>el.textContent=prev, 2500);
+  }
+}
+
+async function exportToSheet(){
+  if(!S.scriptUrl){toast('⚠ Configure a planilha (🔗)');return;}
+  toast('Enviando…');
+  await _pushToSheet();
+  toast('Salvo na planilha ✓');
 }
 
 async function loadFromSheet(){
@@ -746,6 +777,8 @@ function toast(msg){const el=document.getElementById('toast');el.textContent=msg
 loadState();
 render();
 if(S.sheetId)document.getElementById('d-status').textContent=`▸ Planilha: ${S.sheetId.slice(0,22)}…`;
+// Carrega automaticamente da planilha ao abrir, se configurada
+if(S.scriptUrl) loadFromSheet();
 </script>
 </body>
 </html>
