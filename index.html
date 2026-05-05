@@ -327,7 +327,8 @@
     }
 
     /* EVENT rows — detail sheet/sidebar */
-    .evt-section { margin-bottom:4px; }
+    .evt-section { margin-bottom:16px; padding-bottom:8px; border-bottom:1px dashed var(--border); }
+    .evt-section:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
     .evt-row { margin-bottom:6px; }
     .evt-tag-lg {
       display:inline-block; font-size:0.82rem; font-weight:700;
@@ -635,11 +636,11 @@
     </div>
     <div style="height:1px;background:var(--border);margin:4px 0 14px"></div>
     <div class="field-group" style="margin-bottom:6px">
-      <label>📧 E-mail do líder / gestor</label>
-      <input type="email" id="cfg-lider-email" placeholder="lider@organizacao.gov.br"/>
+      <label>📧 E-mails dos gestores (separados por vírgula)</label>
+      <input type="text" id="cfg-lider-email" placeholder="gestor1@exemplo.com, gestor2@exemplo.com"/>
     </div>
     <p style="font-size:0.72rem;color:var(--muted);margin-bottom:16px;line-height:1.5">
-      Receberá alerta se a escala de amanhã estiver vazia.<br>Deixe em branco para desativar.
+      Receberão alerta se a escala de amanhã estiver vazia.<br>Deixe em branco para desativar.
     </p>
     <button class="btn-full" onclick="saveCfg()">Salvar</button>
     <div style="height:8px"></div>
@@ -671,10 +672,10 @@ let S = {
 };
 
 function loadState(){
-  try{ const s=JSON.parse(localStorage.getItem('escala_v3')||'{}'); Object.assign(S,{team:[],schedule:{},events:{},sheetId:'',scriptUrl:'',liderEmail:''},s); }catch(e){}
+  try{ const s=JSON.parse(localStorage.getItem('escala_v4')||'{}'); Object.assign(S,{team:[],schedule:{},events:{},sheetId:'',scriptUrl:'',liderEmail:''},s); }catch(e){}
 }
 function saveState(){
-  localStorage.setItem('escala_v3', JSON.stringify({team:S.team,schedule:S.schedule,events:S.events,sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmail:S.liderEmail}));
+  localStorage.setItem('escala_v4', JSON.stringify({team:S.team,schedule:S.schedule,events:S.events,sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmail:S.liderEmail}));
 }
 
 // Retorna eventos de um dia: fixos semanais (por dia da semana) + avulsos (por data)
@@ -750,7 +751,8 @@ function renderDesktopCalendar(year,month,firstDay,dim,today){
     if(evts.length) html+=`<div class="evt-tags">${evts.map(ev=>`<span class="evt-tag">${ev}</span>`).join('')}</div>`;
     html+=`<div class="day-d-chips">`;
     persons.forEach((p,i)=>{
-      html+=`<div class="person-chip"><span class="chip-dot" style="background:${p.color}"></span><span class="chip-name">${p.name}</span>${!isPast?`<button class="chip-remove" onclick="removePerson(event,'${key}',${i})">✕</button>`:''}</div>`;
+      const evtLabel = p.event && p.event !== 'Escala Geral' ? `<b>${p.event}:</b> ` : '';
+      html+=`<div class="person-chip"><span class="chip-dot" style="background:${p.color}"></span><span class="chip-name">${evtLabel}${p.name}</span>${!isPast?`<button class="chip-remove" onclick="removePerson(event,'${key}',${i})">✕</button>`:''}</div>`;
     });
     html+=`</div>`;
     if(!isPast) html+=`<button class="day-d-add" onclick="openSidebar(event,'${key}',${d})">+ Adicionar</button>`;
@@ -780,6 +782,58 @@ function renderLegend(){
   });
 }
 
+// ── SHARED RENDER SHEET BODY (Per Event Logic) ────────────────────────────
+function renderSheetBody(bodyId,key,isPast){
+  const date=new Date(key);
+  const evts=getEvents(date);
+  const eventGroups = evts.length > 0 ? evts : ['Escala Geral'];
+  const persons=S.schedule[key]||[];
+
+  let html='';
+  eventGroups.forEach((evtName) => {
+    html += `<div class="evt-section">
+               <div class="add-section-label" style="margin-bottom:12px; color:var(--accent2)">📌 ${evtName}</div>`;
+
+    let hasPerson = false;
+    persons.forEach((p, i) => {
+       if(p.event === evtName || (!p.event && evtName === 'Escala Geral')) {
+          hasPerson = true;
+          html+=`<div class="person-row" style="margin-bottom:8px">
+            <div class="person-avatar" style="background:${p.color}">${initials(p.name)}</div>
+            <div class="person-info"><div class="person-name">${p.name}</div>${p.email?`<div class="person-email">${p.email}</div>`:''}</div>
+            ${!isPast?`<button class="person-remove-btn" onclick="removePerson(null,'${key}',${i})">✕</button>`:''}
+          </div>`;
+       }
+    });
+
+    if(!hasPerson) {
+      html += `<div class="empty-msg" style="padding-top:0">Nenhum membro escalado para este evento.</div>`;
+    }
+
+    if(!isPast){
+      const alreadyInEvent = persons.filter(p => p.event === evtName || (!p.event && evtName === 'Escala Geral')).map(p => p.name);
+      const avail = S.team.filter(m => !alreadyInEvent.includes(m.name));
+
+      if(!S.team.length) {
+         html+=`<div class="empty-msg" style="padding-top:8px">Adicione membros via 👥.</div>`;
+      } else if(avail.length) {
+         html+=`<div style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px; margin-top:12px; scrollbar-width: none;">`;
+         avail.forEach(m => {
+            html+=`<button class="person-chip" style="cursor:pointer; flex-shrink:0; padding:8px 12px; border-color:var(--border);" onclick="addPerson('${key}','${m.name}','${evtName}')">
+                     <span class="chip-dot" style="background:${m.color}"></span>
+                     <span class="chip-name" style="font-size:0.85rem">${m.name}</span> 
+                     <span style="color:var(--accent); font-weight:900; margin-left:4px">+</span>
+                   </button>`;
+         });
+         html+=`</div>`;
+      }
+    }
+    html += `</div>`;
+  });
+
+  document.getElementById(bodyId).innerHTML=html;
+}
+
 // ── MOBILE SHEET ──────────────────────────────────────────────────────────
 function openSheet(key,day){
   S.sel=key; render();
@@ -797,38 +851,6 @@ function closeSheet(){
   document.getElementById('m-backdrop').classList.remove('open');
   document.getElementById('m-day-sheet').classList.remove('open');
   render();
-}
-
-function renderSheetBody(bodyId,key,isPast){
-  const persons=S.schedule[key]||[];
-  const date=new Date(key);
-  const evts=getEvents(date);
-  let html='';
-  // Events section
-  if(evts.length){
-    html+=`<div class="evt-section"><div class="add-section-label" style="margin-bottom:8px">📌 Eventos</div>`;
-    evts.forEach(ev=>{ html+=`<div class="evt-row"><span class="evt-tag-lg">${ev}</span></div>`; });
-    html+=`</div><div style="height:12px"></div>`;
-  }
-  if(!persons.length) html+=`<div class="empty-msg">Nenhum membro neste dia.</div>`;
-  else persons.forEach((p,i)=>{
-    html+=`<div class="person-row" style="animation-delay:${i*.05}s">
-      <div class="person-avatar" style="background:${p.color}">${initials(p.name)}</div>
-      <div class="person-info"><div class="person-name">${p.name}</div>${p.email?`<div class="person-email">${p.email}</div>`:''}</div>
-      ${!isPast?`<button class="person-remove-btn" onclick="removePerson(null,'${key}',${i})">✕</button>`:''}
-    </div>`;
-  });
-  if(!isPast){
-    const already=persons.map(p=>p.name);
-    const avail=S.team.filter(m=>!already.includes(m.name));
-    if(!S.team.length) html+=`<div class="add-section"><div class="empty-msg" style="padding-top:8px">Adicione membros via 👥.</div></div>`;
-    else if(avail.length){
-      html+=`<div class="add-section"><div class="add-section-label">Adicionar à escala</div>`;
-      avail.forEach(m=>{ html+=`<button class="member-option" onclick="addPerson('${key}','${m.name}')"><div class="mo-avatar" style="background:${m.color}">${initials(m.name)}</div><span class="mo-name">${m.name}</span><span class="mo-add">+</span></button>`; });
-      html+=`</div>`;
-    }
-  }
-  document.getElementById(bodyId).innerHTML=html;
 }
 
 // ── DESKTOP SIDEBAR ───────────────────────────────────────────────────────
@@ -850,16 +872,16 @@ function closeSidebar(){
 }
 
 // ── SHARED ADD/REMOVE ─────────────────────────────────────────────────────
-function addPerson(key,name){
+function addPerson(key,name,eventName){
   const m=S.team.find(x=>x.name===name); if(!m)return;
   if(!S.schedule[key])S.schedule[key]=[];
-  S.schedule[key].push({name:m.name,color:m.color,email:m.email});
+  S.schedule[key].push({name:m.name,color:m.color,email:m.email,event:eventName});
   saveState();
   const isPast=new Date(key)<new Date(new Date().toDateString());
   if(isDesktop()){ renderSheetBody('d-sidebar-body',key,isPast); }
   else { renderSheetBody('m-sheet-body',key,isPast); }
   render();
-  toast(`${m.name} adicionado(a) ✓`);
+  toast(`${m.name} escalado(a) em ${eventName} ✓`);
 }
 
 function removePerson(e,key,idx){
@@ -917,7 +939,7 @@ function saveCfg(){
     fetch(`${S.scriptUrl}?action=saveLider&email=${encodeURIComponent(S.liderEmail)}`,{mode:'no-cors'}).catch(()=>{});
   }
   document.getElementById('cfg-overlay').classList.remove('open');
-  document.getElementById('d-sheet-status').textContent = S.sheetId ? `▸ Planilha: ${S.sheetId.slice(0,22)}…` : '▸ sem planilha conectada';
+  document.getElementById('d-sheet-status').textContent = S.sheetId ? `▸ Planilha conectada` : '▸ sem planilha conectada';
   toast('Configuração salva ✓');
 }
 
@@ -927,7 +949,7 @@ async function exportToSheet(){
   toast('Enviando…');
   try{
     const rows=[];
-    Object.entries(S.schedule).forEach(([date,persons])=>persons.forEach(p=>rows.push({date,name:p.name,email:p.email||''})));
+    Object.entries(S.schedule).forEach(([date,persons])=>persons.forEach(p=>rows.push({date, event: p.event || 'Escala Geral', name:p.name, email:p.email||''})));
     await fetch(`${S.scriptUrl}?action=save&data=${encodeURIComponent(JSON.stringify(rows))}`,{mode:'no-cors'});
     toast('Salvo na planilha ✓');
   }catch(e){ toast('Erro ao conectar ✕'); }
@@ -944,7 +966,7 @@ async function loadFromSheet(){
     (data.schedule||[]).forEach(r=>{
       if(!S.schedule[r.date])S.schedule[r.date]=[];
       const m=S.team.find(x=>x.name===r.name);
-      S.schedule[r.date].push({name:r.name,email:r.email,color:m?.color||'#888'});
+      S.schedule[r.date].push({event:r.event, name:r.name, email:r.email, color:m?.color||'#888'});
     });
 
     // Eventos
@@ -970,7 +992,7 @@ function toast(msg){ const el=document.getElementById('toast'); el.textContent=m
 // ── INIT ──────────────────────────────────────────────────────────────────
 loadState();
 render();
-if(S.sheetId) document.getElementById('d-sheet-status').textContent=`▸ Planilha: ${S.sheetId.slice(0,22)}…`;
+if(S.sheetId) document.getElementById('d-sheet-status').textContent=`▸ Planilha conectada`;
 </script>
 </body>
 </html>
