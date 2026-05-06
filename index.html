@@ -208,7 +208,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Nunito
       <h1 class="app-title">Escala <em>Equipe</em></h1>
       <div style="display:flex;gap:8px">
         <button class="icon-btn" onclick="openTeam()">&#x1F465;</button>
-        <button class="icon-btn" onclick="openCfg()">&#x1F517;</button>
       </div>
     </div>
     <div class="mobile-mnav">
@@ -263,7 +262,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Nunito
         <button class="mnav-btn" onclick="changeMonth(1)">&#8250;</button>
       </div>
       <button class="icon-btn" onclick="openTeam()">&#x1F465;</button>
-      <button class="icon-btn" onclick="openCfg()">&#x1F517;</button>
     </div>
   </div>
   <div class="d-today-bar">
@@ -311,30 +309,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Nunito
   </div>
 </div>
 
-<!-- CONFIG OVERLAY -->
-<div class="cfg-overlay" id="cfg-overlay" onclick="handleCfgBd(event)">
-  <div class="cfg-panel">
-    <div class="cfg-handle"></div>
-    <div class="cfg-title">Conectar Planilha</div>
-    <div class="cfg-sub">ID da planilha Google e URL do Apps Script</div>
-    <div class="field-grp" style="margin-bottom:10px">
-      <label>ID da Planilha</label>
-      <input type="text" id="cfg-sheet-id" placeholder="1BxiMVs0XRA5nFMdKv..."/>
-    </div>
-    <div class="field-grp" style="margin-bottom:10px">
-      <label>URL do Apps Script</label>
-      <input type="text" id="cfg-script-url" placeholder="https://script.google.com/macros/s/.../exec"/>
-    </div>
-    <div class="cfg-divider"></div>
-    <div class="field-grp" style="margin-bottom:6px">
-      <label>E-mails dos gestores (um por linha)</label>
-      <textarea id="cfg-lider-emails" placeholder="gestor1@org.gov.br"></textarea>
-    </div>
-    <p style="font-size:.72rem;color:var(--muted);margin-bottom:16px;line-height:1.5">Receberao alerta se evento de amanha estiver sem operador.</p>
-    <button class="btn-full" onclick="saveCfg()">Salvar</button>
-    <div style="height:8px"></div>
-  </div>
-</div>
 
 <div class="toast" id="toast"></div>
 
@@ -358,20 +332,20 @@ function sortEvts(arr){return arr.slice().sort(function(a,b){return extractHour(
 var S={
   year:new Date().getFullYear(),month:new Date().getMonth(),
   team:[],schedule:{},events:{},
-  sheetId:'',scriptUrl:'',liderEmails:'',sel:null
+  sheetId:'180GiF6NrsKNPDD6XOZpNcL0ZCe4PcIzEAOyDnpqPUIo',
+  scriptUrl:'https://script.google.com/macros/s/AKfycbybazKufD9ypNQvgBhq_Xu0rVh3d7d-rDn0u5JCyi-ytmHEmfpgnssAfsMiAUH1MOng5w/exec',
+  liderEmails:'',sel:null
 };
 
 function loadState(){
   try{
     var s=JSON.parse(localStorage.getItem('escala_v5')||'{}');
     S.team=[];S.schedule=s.schedule||{};S.events=s.events||{};
-    S.sheetId=s.sheetId||'';S.scriptUrl=s.scriptUrl||'';S.liderEmails=s.liderEmails||'';
   }catch(e){}
 }
 function saveState(){
   localStorage.setItem('escala_v5',JSON.stringify({
-    schedule:S.schedule,events:S.events,
-    sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmails:S.liderEmails
+    schedule:S.schedule,events:S.events
   }));
 }
 
@@ -794,8 +768,7 @@ function toast(msg){
 // INIT
 loadState();
 render();
-if(S.sheetId)document.getElementById('d-status').innerHTML='&#9655; Planilha: '+S.sheetId.slice(0,22)+'...';
-if(S.scriptUrl)loadFromSheet();
+loadFromSheet();
 </script>
 </body>
 </html>
