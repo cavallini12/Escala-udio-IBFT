@@ -82,7 +82,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Nunito
 .tm-email{font-size:.75rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tm-remove{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 8px;color:var(--muted);font-size:.85rem;cursor:pointer;transition:all .15s}
 .tm-remove:hover{border-color:var(--danger);color:var(--danger)}
-.team-add-form{padding:16px;border-top:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.team-add-form{display:none}
 .cfg-overlay{position:fixed;inset:0;background:rgba(26,23,20,.5);z-index:70;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px)}
 .cfg-overlay.open{opacity:1;pointer-events:all}
 .cfg-panel{background:var(--surface);border-radius:24px 24px 0 0;padding:0 20px max(24px,env(safe-area-inset-bottom));width:100%;max-width:560px;margin:0 auto;box-shadow:var(--shadow-lg);transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
@@ -306,10 +306,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Nunito
     <h2>Equipe</h2>
   </div>
   <div class="team-list" id="team-list"></div>
-  <div class="team-add-form">
-    <div class="field-grp"><label>Nome</label><input type="text" id="new-name" placeholder="Nome do membro"/></div>
-    <div class="field-grp"><label>E-mail (lembrete)</label><input type="email" id="new-email" placeholder="email@exemplo.com"/></div>
-    <button class="btn-full" onclick="addMember()">+ Adicionar membro</button>
+  <div class="team-add-form" style="display:block;padding:14px 16px;border-top:1px solid var(--border);background:var(--surface2)">
+    <p style="font-size:.75rem;color:var(--muted);text-align:center;font-style:italic">Equipe sincronizada pela planilha Google. Edite a aba <strong>Equipe</strong> para adicionar ou remover membros.</p>
   </div>
 </div>
 
@@ -366,13 +364,13 @@ var S={
 function loadState(){
   try{
     var s=JSON.parse(localStorage.getItem('escala_v5')||'{}');
-    S.team=s.team||[];S.schedule=s.schedule||{};S.events=s.events||{};
+    S.team=[];S.schedule=s.schedule||{};S.events=s.events||{};
     S.sheetId=s.sheetId||'';S.scriptUrl=s.scriptUrl||'';S.liderEmails=s.liderEmails||'';
   }catch(e){}
 }
 function saveState(){
   localStorage.setItem('escala_v5',JSON.stringify({
-    team:S.team,schedule:S.schedule,events:S.events,
+    schedule:S.schedule,events:S.events,
     sheetId:S.sheetId,scriptUrl:S.scriptUrl,liderEmails:S.liderEmails
   }));
 }
@@ -686,24 +684,11 @@ function openTeam(){renderTeamList();document.getElementById('team-overlay').cla
 function closeTeam(){document.getElementById('team-overlay').classList.remove('open');render()}
 function renderTeamList(){
   var list=document.getElementById('team-list');
-  if(!S.team.length){list.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted);font-style:italic">Nenhum membro ainda.</div>';return}
-  list.innerHTML=S.team.map(function(m,i){
+  if(!S.team.length){list.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted);font-style:italic">Equipe ainda não carregada.<br>Verifique a aba <strong>Equipe</strong> na planilha e recarregue.</div>';return}
+  list.innerHTML=S.team.map(function(m){
     return '<div class="team-row"><div class="tm-av" style="background:'+m.color+'">'+initials(m.name)+'</div>'+
-      '<div class="tm-info"><div class="tm-name">'+m.name+'</div><div class="tm-email">'+(m.email||'Sem e-mail')+'</div></div>'+
-      '<button class="tm-remove" onclick="removeMember('+i+')">Remover</button></div>';
+      '<div class="tm-info"><div class="tm-name">'+m.name+'</div><div class="tm-email">'+(m.email||'Sem e-mail')+'</div></div></div>';
   }).join('');
-}
-function addMember(){
-  var name=document.getElementById('new-name').value.trim();
-  var email=document.getElementById('new-email').value.trim();
-  if(!name)return;
-  S.team.push({name:name,email:email,color:COLORS[S.team.length%COLORS.length]});
-  document.getElementById('new-name').value='';
-  document.getElementById('new-email').value='';
-  saveState();renderTeamList();toast(name+' adicionado(a)');
-}
-function removeMember(idx){
-  var n=S.team[idx].name;S.team.splice(idx,1);saveState();renderTeamList();toast(n+' removido(a)');
 }
 
 // NAVIGATION
@@ -771,6 +756,12 @@ function loadFromSheet(){
     .then(function(r){return r.json()})
     .then(function(data){
       S.schedule={};
+      // Load team from sheet
+      S.team=[];
+      var COLORS=['#2d6a4f','#d4a017','#c0392b','#1a6b9a','#7b3f9e','#c0622d','#2980b9','#16a085','#8e44ad','#d35400'];
+      (data.team||[]).forEach(function(m,i){
+        S.team.push({name:m.name,email:m.email,color:m.color||COLORS[i%COLORS.length]});
+      });
       (data.schedule||[]).forEach(function(r){
         if(!S.schedule[r.date])S.schedule[r.date]=[];
         var m=null;
